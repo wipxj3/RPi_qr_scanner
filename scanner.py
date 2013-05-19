@@ -53,7 +53,7 @@ def decodeQr(imageIndex):
 
 def checkValidity(value):
     import urllib2
-    req = urllib2.Request('http://192.168.88.70:8000/request/check/?ticket=' + str(value))
+    req = urllib2.Request('http://pinteav.starnet.md:8000/request/check/?ticket=' + str(value))
     
     try: 
         response = urllib2.urlopen(req)
@@ -85,9 +85,12 @@ if __name__ == '__main__':
         count += 1
         capture = captureImage()
         payload = decodeQr(capture)
+        print '++++++++++++++++++++++++++++++++++++++++'
+        print payload
+        print '++++++++++++++++++++++++++++++++++++++++'
         if (len(payload) == 54) and (CHECK_RE.match(payload)):
             response, shortHash = checkValidity(payload)
         print '========================================'
-	    print 'STATUS >> ' + response + ' ' + shortHash
+        print 'STATUS >> ' + response + ' ' + shortHash
         print '========================================'
         time.sleep(1)
