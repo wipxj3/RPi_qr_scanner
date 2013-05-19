@@ -1,4 +1,4 @@
-/capture/*.png
+/capture/*.*
 *.py[cod]
 
 # C extensions
