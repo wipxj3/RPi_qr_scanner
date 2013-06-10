@@ -3,7 +3,7 @@
 __author__ = 'dexter'
 # Time Library
 import time
-
+import RPi.GPIO as GPIO
 
 def getTime():  # Function that returns a Timestamp %H_%M_%S
     t = time.localtime()
@@ -77,12 +77,15 @@ def fetchResult(html):
 if __name__ == '__main__':
     dataList = []
     payload = None
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(11, GPIO.OUT)
     # Regular Expression Library
     import re
     CHECK_RE = re.compile('[a-zA-Z0-9]')
     count = 0
     while True:
         count += 1
+        GPIO.output(11, False)
         capture = captureImage()
         payload = decodeQr(capture)
         print '----------------------------------------'
@@ -93,4 +96,5 @@ if __name__ == '__main__':
             print '========================================'
             print 'STATUS >> ' + response + ' ' + shortHash
             print '========================================'
+	    GPIO.output(11, True)
         time.sleep(1)
