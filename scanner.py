@@ -47,7 +47,7 @@ def decodeQr(imageIndex):
 	   decodedData = str(info)
 	   return decodedData
     except Exception:
-	   print "No data fountd"
+	   print "No data found"
 	   return 'error'
 
 
@@ -85,12 +85,12 @@ if __name__ == '__main__':
         count += 1
         capture = captureImage()
         payload = decodeQr(capture)
-        print '++++++++++++++++++++++++++++++++++++++++'
+        print '----------------------------------------'
         print payload
-        print '++++++++++++++++++++++++++++++++++++++++'
+        print '----------------------------------------'
         if (len(payload) == 54) and (CHECK_RE.match(payload)):
             response, shortHash = checkValidity(payload)
-        print '========================================'
-        print 'STATUS >> ' + response + ' ' + shortHash
-        print '========================================'
+            print '========================================'
+            print 'STATUS >> ' + response + ' ' + shortHash
+            print '========================================'
         time.sleep(1)
